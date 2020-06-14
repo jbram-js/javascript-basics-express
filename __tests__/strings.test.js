@@ -12,10 +12,19 @@ describe('/strings', () => {
           done();
         });
     });
+    it('returns "Hello, turtle!" when passed "turtle"', done => {
+      request(app)
+        .get('/strings/hello/turtle')
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toEqual({ result: 'Hello, turtle!' });
+          done();
+        });
+    });
   });
 
   describe('GET /upper/{string}', () => {
-    xit('returns the uppercased string', done => {
+    it('returns the uppercased string', done => {
       request(app)
         .get('/strings/upper/hello')
         .then(res => {
@@ -27,7 +36,7 @@ describe('/strings', () => {
   });
 
   describe('GET /lower/{string}', () => {
-    xit('returns the lowercased string', done => {
+    it('returns the lowercased string', done => {
       request(app)
         .get('/strings/lower/HELLO')
         .then(res => {
@@ -38,8 +47,20 @@ describe('/strings', () => {
     });
   });
 
+  describe('GET /length/{string}', () => {
+    it('returns the length string', done => {
+      request(app)
+        .get('/strings/length/hello')
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toEqual({ result: 5 });
+          done();
+        });
+    });
+  });
+
   describe('GET /first-characters/{string}', () => {
-    xit('returns the first character of the string when there is no query string', done => {
+    it('returns the first character of the string when there is no query string', done => {
       request(app)
         .get('/strings/first-characters/hello')
         .then(res => {
